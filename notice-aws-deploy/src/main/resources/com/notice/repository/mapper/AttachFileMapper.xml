@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+ <mapper namespace="com.notice.repository.mapper.AttachFileMapper">
+ 	
+ 	
+ 	<insert id="save">
+ 		call save_attach_file_pro(
+ 			#{orgFileName}, 
+ 			#{saveFileName}, 
+ 			#{ext}, 
+ 			#{size}, 
+ 			#{noticeId}
+ 		)
+ 		
+ 		<!-- INSERT 
+ 		INTO 
+ 			attach_file (
+ 				org_file_name, 
+ 				save_file_name, 
+ 				ext,
+ 				size, 
+ 				notice_id
+ 			)
+ 		VALUES (
+ 			#{orgFileName}, 
+ 			#{saveFileName}, 
+ 			#{ext}, 
+ 			#{size}, 
+ 			#{noticeId}
+ 		) -->
+ 	</insert>
+ 	
+ 	<select id="findById" resultType="AttachFile">
+ 		SELECT 
+ 			* 
+ 		FROM 
+ 			attach_file 
+ 		WHERE 
+ 			attach_file_id = #{attachFileId}
+ 	</select>
+ 	
+ 	<select id="findByNoticeId" resultType="AttachFile">
+ 		SELECT 
+ 			a.attach_file_id, 
+ 			a.org_file_name, 
+ 			a.save_file_name, 
+ 			a.ext, 
+ 			a.size, 
+ 			a.notice_id
+ 		FROM 
+ 			attach_file a 
+ 		WHERE 
+ 			notice_id = #{noticeId}
+ 	</select>
+ 	
+ 	<delete id="remove">
+ 		DELETE 
+ 		FROM 
+ 			attach_file 
+ 		WHERE 
+ 			attach_file_id = #{attachFileId}
+ 	</delete>
+ 	
+ </mapper>

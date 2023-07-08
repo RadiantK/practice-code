@@ -1,0 +1,148 @@
+﻿<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <title>NOTICE</title>
+    <meta content="Violet Planet Platform" name="Description"/>
+    <meta name="keyword" content=""/>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Violet Planet Platform">
+    <meta property="og:description" content="Violet Planet Platform">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="" />
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css?20210330" />
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="/js/list.js" defer></script>
+    
+    <style>
+    	i {
+    		padding: 4px;
+    	}
+    	a, a:link {
+    		border: none;
+    	}
+    </style>
+</head>
+<body>
+
+<div id="wrap">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="loginInfo">
+                <span class="avatar"><img src="" alt=""></span>
+                <p>NOTICE</p>
+            </div>
+        </div>
+        <div class="sidebarScroll">
+            <ul class="nav">
+                <li class="active">
+
+                </li>
+                <li>
+
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <div class="alarm"><em class="badge">3</em></div>
+            <div class="lastConnect"><span class="date">2020-11-20</span><span class="time">12:32</span></div>
+            <a href="#" class="btn btn_logout"></a>
+        </div>
+    </nav>
+    <!-- Page Content Holder -->
+    <div id="content" th:data-id="${session.loginMember}">
+        <header class="header">
+            <div class="row">
+                <div class="col-6"><h2 class="header-title">게시판</h2></div>
+                <div class="col-6 text-end" th:if="${session.loginMember} == null">
+					<a href="/login" style="font-size: 1.2rem">Login</a>
+				</div>
+				<div class="col-6 text-end" th:if="${session.loginMember}">
+					<a href="/logout" style="font-size: 1.2rem">Logout</a>
+				</div>
+            </div>
+        </header>
+
+        <div class="row table-header mt-3">
+            <form action="" method="post" onsubmit="return false;" data-act="inputSearch">
+            	<div class="col-md-10">
+	                <select name="moduleType" class="form-control type" style="width:75px;">
+	                    <option value="total">전체</option>
+	                    <option value="title">제목</option>
+	                    <option value="content">내용</option>
+	                </select>
+	                <input type="text" class="form-control word" placeholder="검색">
+	                <button type="button" class="btn btn-primary searchBtn" data-act="clickSearch">검색</button>
+	            </div>
+            </form>
+            <div class="col-md-2 text-end" style="width: 100%;">
+                <button type="button" class="btn btn-primary regist" data-act="regist">등록</button>
+                <button type="button" class="btn btn-info home" data-act="home">홈으로</button>
+            </div>
+        </div>
+
+        <div class="card table-content mt-2">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <!--<tr>
+                                <th scope="col"><input type="checkbox"/></th>
+                                <th scope="col">게시글 번호</th>
+                                <th scope="col">제목</th>
+                                <th scope="col">게시글 내용</th>
+                                <th scope="col">등록일</th>
+                                <th scope="col">상세</th>
+                            </tr>-->
+                        </thead>
+                        <tbody>
+                            <!--<tr>
+                                <td><input type="checkbox"/></td>
+                                <td>A001</td>
+                                <td class="text-start">신율진다</td>
+                                <td class="text-start">신율 진단 알고리즘</td>
+                                <td>2</td>
+                                <td>상세</td>
+                            </tr>
+                            <tr>-->
+
+                        </tbody>
+                    </table>
+                </div>
+                
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end paging">
+                        <!--<li class="page-item">
+                            <a class="page-link move" href="#"><i class="bi bi-chevron-left"></i> Prev</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link move" href="#">Next <i class="bi bi-chevron-right"></i></a>
+                        </li>-->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+
+
+

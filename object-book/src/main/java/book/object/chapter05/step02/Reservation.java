@@ -1,7 +1,5 @@
 package book.object.chapter05.step02;
 
-import org.eternity.money.Money;
-
 public class Reservation {
     private Customer customer;
     private Screening screening;

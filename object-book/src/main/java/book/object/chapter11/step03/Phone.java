@@ -20,6 +20,10 @@ public abstract class Phone {
         return ratePolity.calculateFee(this);
     }
 
+    public void call(Call call) {
+        calls.add(call);
+    }
+
     protected Money afterCalculated(Money fee) {
         return fee;
     }

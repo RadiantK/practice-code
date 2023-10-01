@@ -3,16 +3,15 @@ package book.object.chapter11.step03;
 import book.object.chapter11.Money;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 public abstract class Phone {
 
-    private RatePolity ratePolity;
+    private RatePolicy ratePolity;
     private List<Call> calls = new ArrayList<>(); // 전체 통화 목록
 
-    public Phone(RatePolity ratePolity) {
+    public Phone(RatePolicy ratePolity) {
         this.ratePolity = ratePolity;
     }
 

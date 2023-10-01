@@ -5,7 +5,7 @@ import book.object.chapter11.Money;
 public class RateDiscountablePolicy extends AdditionalRatePolicy {
     private Money discountAmount;
 
-    public RateDiscountablePolicy(RatePolity next, Money discountAmount) {
+    public RateDiscountablePolicy(RatePolicy next, Money discountAmount) {
         super(next);
         this.discountAmount = discountAmount;
     }

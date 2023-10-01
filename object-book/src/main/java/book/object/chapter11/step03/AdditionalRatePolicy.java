@@ -2,10 +2,10 @@ package book.object.chapter11.step03;
 
 import book.object.chapter11.Money;
 
-public abstract class AdditionalRatePolicy implements RatePolity {
-    private RatePolity next;
+public abstract class AdditionalRatePolicy implements RatePolicy {
+    private RatePolicy next;
 
-    public AdditionalRatePolicy(RatePolity next) {
+    public AdditionalRatePolicy(RatePolicy next) {
         this.next = next;
     }
 

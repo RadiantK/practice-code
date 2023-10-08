@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -25,9 +26,15 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
 
+    @Builder
+    public Delivery(Address address, DeliveryStatus status) {
+        this.address = address;
+        this.status = status;
+    }
+
     /*
-        연관관계 편의 메서드
-     */
+            연관관계 편의 메서드
+         */
     public void setOrder(Order order) {
         this.order = order;
     }

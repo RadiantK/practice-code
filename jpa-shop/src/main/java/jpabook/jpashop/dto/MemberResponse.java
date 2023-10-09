@@ -19,7 +19,7 @@ public class MemberResponse {
     private Address address;
 
     @Builder
-    private MemberResponse(Long id, String name, Address address) {
+    public MemberResponse(Long id, String name, Address address) {
         this.id = id;
         this.name = name;
         this.address = address;

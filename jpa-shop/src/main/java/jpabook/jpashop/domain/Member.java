@@ -28,6 +28,10 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
+    public void editInfo(String name) {
+        this.name = name;
+    }
+
     @Builder
     public Member(String name, Address address) {
         this.name = name;

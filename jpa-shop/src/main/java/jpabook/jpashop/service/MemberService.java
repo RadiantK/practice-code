@@ -61,4 +61,10 @@ public class MemberService {
     public MemberResponse findMember(Long memberId) {
         return MemberResponse.of(memberRepository.findById(memberId));
     }
+
+    @Transactional
+    public void update(Long id, String name) {
+        Member findMember = memberRepository.findById(id);
+        findMember.editInfo(name);
+    }
 }

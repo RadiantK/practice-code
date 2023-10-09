@@ -6,6 +6,7 @@ import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.dto.OrderResponse;
+import jpabook.jpashop.dto.OrderSearch;
 import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +34,14 @@ public class OrderService {
     public Long order(Long memberId, Long itemId, int count) {
         // 엔티티 조회
         Member findMember = memberRepository.findById(memberId);
+        if (findMember == null) {
+            throw new IllegalArgumentException("회원이 존재하지 않습니다.");
+        }
+
         Item findItem = itemRepository.findById(itemId);
+        if (findItem == null) {
+            throw new IllegalArgumentException("상품이 존재하지 않습니다.");
+        }
 
         // 배송정보 생성
         Delivery delivery = Delivery.builder()
@@ -66,7 +75,9 @@ public class OrderService {
     /**
      * 주문 검색
      */
-//    public List<OrderResponse> findOrders(OrderSearch orderSearch) {
-//        return null;
-//    }
+    public List<OrderResponse> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAll(orderSearch).stream()
+                .map(OrderResponse::of)
+                .collect(Collectors.toList());
+    }
 }

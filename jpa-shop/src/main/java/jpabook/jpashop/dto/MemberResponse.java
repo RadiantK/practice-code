@@ -4,8 +4,12 @@ import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Member;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@NoArgsConstructor
+@Setter
 public class MemberResponse {
 
     private Long id;

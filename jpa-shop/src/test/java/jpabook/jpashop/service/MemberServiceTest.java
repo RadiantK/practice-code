@@ -65,11 +65,15 @@ class MemberServiceTest {
     }
 
     private MemberRequest createMemberRequest(String name) {
-        Address address = new Address("01010", "서울시 구로구", "빌라 5층");
+        String zipcode = "01010";
+        String city = "서울시 구로구";
+        String street = "빌라 5층";
 
         return MemberRequest.builder()
                 .name(name)
-                .address(address)
+                .zipcode(zipcode)
+                .city(city)
+                .street(street)
                 .build();
     }
 }

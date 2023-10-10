@@ -2,6 +2,7 @@ package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.dto.OrderSearch;
+import jpabook.jpashop.repository.query.OrderSimpleQueryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -61,5 +62,16 @@ public class OrderRepository {
         }
 
         return query.getResultList();
+    }
+
+    /**
+     *  한번의 쿼리로 order, member, delivery를 모두 가져옴
+     */
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+                "select o from Order o" +
+                " join fetch o.member m" +
+                " join fetch o.delivery d", Order.class)
+                .getResultList();
     }
 }

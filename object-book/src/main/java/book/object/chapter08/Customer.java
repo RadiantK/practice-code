@@ -1,4 +1,4 @@
-package book.object.Chapter08;
+package book.object.chapter08;
 
 public class Customer {
 	private String name;

@@ -1,4 +1,4 @@
-package book.object.Chapter08;
+package book.object.chapter08;
 
 import java.math.BigDecimal;
 import java.util.Objects;

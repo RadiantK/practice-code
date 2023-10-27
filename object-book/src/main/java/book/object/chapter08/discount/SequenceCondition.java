@@ -1,6 +1,6 @@
-package book.object.Chapter08.discount;
+package book.object.chapter08.discount;
 
-import book.object.Chapter08.Screening;
+import book.object.chapter08.Screening;
 
 public class SequenceCondition implements DiscountCondition {
     private int sequence;

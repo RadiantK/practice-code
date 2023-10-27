@@ -1,6 +1,6 @@
-package book.object.Chapter08;
+package book.object.chapter08;
 
-import book.object.Chapter08.discount.DiscountPolicy;
+import book.object.chapter08.discount.DiscountPolicy;
 
 import java.time.Duration;
 

@@ -53,4 +53,8 @@ public class Product extends BaseEntity {
         this.stockQuantity = stockQuantity;
         this.sellingStatus = sellingStatus;
     }
+
+    public void addStockQuantity(int quantity) {
+        this.stockQuantity += quantity;
+    }
 }

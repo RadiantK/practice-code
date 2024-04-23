@@ -52,8 +52,6 @@ class OrderRepositoryTest {
         Product product1 = createProduct("노트");
         Product product2 = createProduct("볼펜");
         productRepository.saveAll(List.of(product1, product2));
-        System.out.println("product1.getId() = " + product1.getId());
-        System.out.println("product2.getId() = " + product2.getId());
 
         Member member = Member.builder().build();
         memberRepository.save(member);
@@ -62,8 +60,10 @@ class OrderRepositoryTest {
         OrderItem orderItem1 = createOrderItem(product1);
         OrderItem orderItem2 = createOrderItem(product2);
 
-        Order order1 = createOrder(member, orderItem1, currDateTime, ORDERED);
-        Order order2 = createOrder(member, orderItem2, currDateTime, COMPLETED);
+        Order order1 = createOrder(member, currDateTime, ORDERED);
+        order1.getOrderItems().add(orderItem1);
+        Order order2 = createOrder(member, currDateTime, COMPLETED);
+        order1.getOrderItems().add(orderItem2);
         orderRepository.saveAll(List.of(order1, order2));
 
         // when
@@ -85,8 +85,6 @@ class OrderRepositoryTest {
         Product product1 = createProduct("노트");
         Product product2 = createProduct("볼펜");
         productRepository.saveAll(List.of(product1, product2));
-        System.out.println("product1.getId() = " + product1.getId());
-        System.out.println("product2.getId() = " + product2.getId());
 
         Member member = Member.builder().build();
         memberRepository.save(member);
@@ -95,8 +93,10 @@ class OrderRepositoryTest {
         OrderItem orderItem1 = createOrderItem(product1);
         OrderItem orderItem2 = createOrderItem(product2);
 
-        Order order1 = createOrder(member, orderItem1, currDateTime, ORDERED);
-        Order order2 = createOrder(member, orderItem2, currDateTime, COMPLETED);
+        Order order1 = createOrder(member, currDateTime, ORDERED);
+        order1.getOrderItems().add(orderItem1);
+        Order order2 = createOrder(member, currDateTime, COMPLETED);
+        order1.getOrderItems().add(orderItem2);
         orderRepository.saveAll(List.of(order1, order2));
 
         // when
@@ -110,12 +110,11 @@ class OrderRepositoryTest {
                 );
     }
 
-    private Order createOrder(Member member, OrderItem orderItem1, LocalDateTime orderDate, OrderStatus orderStatus) {
+    private Order createOrder(Member member, LocalDateTime orderDate, OrderStatus orderStatus) {
         return Order.builder()
                 .orderStatus(orderStatus)
                 .member(member)
                 .delivery(Delivery.builder().build())
-                .orderItems(List.of(orderItem1))
                 .orderDate(orderDate)
                 .build();
     }

@@ -41,4 +41,20 @@ public class OrderItem {
         this.count = count;
         this.product = product;
     }
+
+    public static OrderItem createOrderItem(Product product, int count) {
+        OrderItem orderItem = new OrderItem(product.getPrice(), count, product);
+
+        product.deductQuantity(count);
+
+        return orderItem;
+    }
+
+    public int getTotalPrice() {
+        return getOrderPrice() * getCount();
+    }
+
+    public void cancel() {
+        getProduct().addStockQuantity(count);
+    }
 }

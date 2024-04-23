@@ -2,6 +2,7 @@ package com.jpashop.domain.order;
 
 import com.jpashop.domain.BaseEntity;
 import com.jpashop.domain.delivery.Delivery;
+import com.jpashop.domain.delivery.DeliveryStatus;
 import com.jpashop.domain.member.Member;
 import com.jpashop.domain.orderItem.OrderItem;
 import lombok.AccessLevel;
@@ -42,12 +43,34 @@ public class Order extends BaseEntity {
 
     private LocalDateTime orderDate;
 
+    public void changeStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     @Builder
-    private Order(OrderStatus orderStatus, Member member, Delivery delivery, List<OrderItem> orderItems, LocalDateTime orderDate) {
+    private Order(OrderStatus orderStatus, Member member, Delivery delivery, LocalDateTime orderDate) {
         this.orderStatus = orderStatus;
         this.member = member;
         this.delivery = delivery;
-        this.orderItems = orderItems;
         this.orderDate = orderDate;
+    }
+
+    public static Order createOrder(Member member, Delivery delivery, LocalDateTime orderDate, OrderItem orderItem) {
+        Order order = new Order(OrderStatus.ORDERED, member, delivery, orderDate);
+        // 예제이므로 주문 상품은 하나만 add
+        order.getOrderItems().add(orderItem);
+
+        return order;
+    }
+
+    public void cancel() {
+        if (DeliveryStatus.COMPLETE.equals(delivery.getStatus())) {
+            throw new IllegalArgumentException("이미 배송완료된 상품은 취소가 불가능합니다.");
+        }
+
+        changeStatus(OrderStatus.CANCELED);
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.jpashop.domain.product;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.jpashop.domain.product.SellingStatus.HOLD;
 import static com.jpashop.domain.product.SellingStatus.SELLING;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -62,6 +63,27 @@ class ProductTest {
         assertThatThrownBy(() -> product.deductQuantity(quantity))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("재고 수량이 부족합니다.");
+    }
+
+    @DisplayName("상품의 데이터를 수정한다.")
+    @Test
+    void editProductInfo() {
+        // given
+        Product product = Product.builder()
+                .name("JPA책")
+                .price(1000)
+                .stockQuantity(10)
+                .sellingStatus(HOLD)
+                .build();
+
+        // when
+        product.editProductInfo("JPA책", 2000, 5, SELLING);
+
+        // then
+        assertThat(product.getName()).isEqualTo("JPA책");
+        assertThat(product.getPrice()).isEqualTo(2000);
+        assertThat(product.getStockQuantity()).isEqualTo(5);
+        assertThat(product.getSellingStatus()).isEqualTo(SELLING);
     }
 
     private Product createProduct(String name, int stockQuantity) {
